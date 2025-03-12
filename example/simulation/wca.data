@@ -1,0 +1,12 @@
+10.0  0.1  0.0  0.25  1		#T0, Tf, t0, tf, ngap_rescaling
+1.0e-4				        #dt
+0.0  3.2  100		        #transtime, runtime, nsamples
+10  10				        #ntags big med sml
+../configs/init_config_1		        #infile
+1				#number of configs
+400  2.0			        #nbins range for gder
+
+#ngap_rescaling indica cada cuanto se hace un reescalado de temperatura al sistema.
+#Si vale 1, entonces cada paso temporal hará el reescalado. La idea es que este número sea
+#un divisor de ngap, que es cada cuantos pasos se calculan las fuerzas.
+#puede crear memory leaks. Debe ser menor que ngap

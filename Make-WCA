@@ -1,0 +1,38 @@
+wca.bin : \
+	wca.o \
+	rannew64.o \
+	cell_locate.o \
+	get_forces.o \
+	set_temp.o \
+	get_gder.o \
+	update_verlet.o
+	nvcc -O3 -arch sm_50 -L/usr/local/lib -lgsl -lgslcblas -lm \
+	wca.o \
+	rannew64.o \
+	cell_locate.o \
+	get_forces.o \
+	set_temp.o \
+	get_gder.o \
+	update_verlet.o \
+	-o wca.bin
+
+wca.o : wca.cu encabezados.h
+	nvcc -c -O2 -arch sm_50 wca.cu
+
+cell_locate.o : cell_locate.cu encabezados.h
+	nvcc -c -O2 -arch sm_50 cell_locate.cu
+
+get_forces.o : get_forces.cu encabezados.h
+	nvcc -c -O2 -arch sm_50 get_forces.cu
+
+update_verlet.o : update_verlet.cu encabezados.h
+	nvcc -c -O2 -arch sm_50 update_verlet.cu
+
+get_gder.o : get_gder.cu encabezados.h
+	nvcc -c -O2 -arch sm_50 get_gder.cu
+
+set_temp.o : set_temp.cu encabezados.h
+	nvcc -c -O2 -arch sm_50 set_temp.cu
+
+rannew64.o : rannew64.cu encabezados.h
+	nvcc -c -O2 rannew64.cu
